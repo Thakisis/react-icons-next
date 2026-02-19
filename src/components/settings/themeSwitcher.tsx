@@ -8,14 +8,16 @@ const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
   const iconSize = 14;
 
-  const handleToggle = () => {
+  const handleToggle = (newTheme: string) => {
+    if (newTheme === theme) return; // ya está activo, no hace nada
+
     if (!document.startViewTransition) {
-      setTheme(theme === "dark" ? "light" : "dark");
+      setTheme(newTheme);
       return;
     }
 
     document.startViewTransition(() => {
-      setTheme(theme === "dark" ? "light" : "dark");
+      setTheme(newTheme);
     });
   };
 
@@ -24,21 +26,23 @@ const ThemeSwitcher = () => {
       <Button
         title="Light mode"
         variant="ghost"
+        name="light"
         size="sm"
         className={cn(
           "rounded-none border-r border-zinc-200 px-2.5 dark:border-zinc-800 bg-zinc-200",
           "dark:bg-transparent",
         )}
-        onClick={handleToggle}
+        onClick={() => handleToggle("light")}
       >
         <SunIcon size={iconSize} />
       </Button>
       <Button
         title="Dark mode"
+        name="dark"
         variant="ghost"
         size="sm"
         className={cn("rounded-none px-2.5", "dark:bg-zinc-800")}
-        onClick={handleToggle}
+        onClick={() => handleToggle("dark")}
       >
         <MoonIcon size={iconSize} />
       </Button>
