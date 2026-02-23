@@ -10,8 +10,8 @@
 
   // Organize imports and apply quick fixes on save
   "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": true,
-    "source.fixAll.biome": true
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
   },
 
   // Disable other formatters to avoid conflicts

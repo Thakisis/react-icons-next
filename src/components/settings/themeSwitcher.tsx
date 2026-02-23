@@ -1,6 +1,7 @@
 "use client";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { flushSync } from "react-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/ui/button";
 
@@ -17,7 +18,9 @@ const ThemeSwitcher = () => {
     }
 
     document.startViewTransition(() => {
-      setTheme(newTheme);
+      flushSync(() => {
+        setTheme(newTheme);
+      });
     });
   };
 
